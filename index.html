@@ -1,168 +1,136 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Donazioni Medusa Express</title>
-  <link href="https://fonts.googleapis.com/css2?family=Point+Black&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Point Black', sans-serif;
-      display: flex;
-      height: 100vh;
-      background: #f9f9f9;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dona ai Brookies</title>
+    <style>
+        body {
+            font-family: 'Point Black', sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: row;
+        }
 
-  /* Sidebar laterale sinistra */
-    .sidebar {
-      width: 180px;
-      background-color: #ffa253;
-      color: orange;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 10px;
-    }
+        /* Sidebar */
+        .sidebar {
+            background-color: #222;
+            color: white;
+            width: 220px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .sidebar img {
-      max-width: 140px;
-      margin-bottom: 30px;
-    }
+        .sidebar img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
 
+        /* Contenuto principale */
+        .main {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
 
-    /* Contenuto principale */
-    .main-content {
-      flex-grow: 1;
-      padding: 40px;
-      overflow-y: auto; /* Per scroll se contenuto lungo */
-    }
+        h1 {
+            color: #EF6446;
+            font-size: 3em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
 
+        /* Tabella importi */
+        .donation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-  h1 {
-      text-align: center;
-      color: #EF6446;
-      margin-bottom: 30px;
-      font-size: 3rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
+        .donation-table th {
+            background-color: orange;
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+        }
 
-    /* Tabella */
-    table {
-      width: 300px; /* larghezza fissa più stretta per contenere i bottoni */
-      border-collapse: collapse;
-      margin: 0 auto 40px auto; /* centrata orizzontalmente */
-    }
+        .donation-table td {
+            padding: 15px;
+        }
 
-    /* Prima riga arancione */
-    tr.header-row {
-      background-color: #EF6446;
-      color: white;
-    }
+        /* Bottoni importi */
+        .donation-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #EF6446;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
-    tr.header-row td {
-      text-align: center;
-      font-size: 1.5rem;
-      padding: 15px 0;
-      font-weight: 700;
-    }
+        .donation-button:hover {
+            background-color: #d85339;
+        }
 
-    /* Seconda riga con i bottoni */
-    tr.button-row td {
-      text-align: center;
-      padding: 15px 0;
-      vertical-align: top;
-    }
-
-    /* Stile base bottoni */
-    .donation-button {
-      display: block; /* blocco per farli uno sotto l'altro */
-      width: 220px;
-      margin: 10px auto; /* centrati e con spazio verticale */
-      padding: 15px 10px;
-      border-radius: 8px;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      text-decoration: none;
-      font-family: 'Point Black', sans-serif;
-      user-select: none;
-      transition: filter 0.2s ease;
-    }
-
-    .donation-button:hover {
-      filter: brightness(0.85);
-    }
-
-    /* Colori diversi per ogni bottone */
-    .btn-1 {
-      background-color: #ffa253; /* arancione */
-    }
-
-    .btn-2 {
-      background-color: #ffa253; /* arancione */
-    }
-
-    .btn-3 {
-      background-color: #ffa253; /* arancione */
-    }
-
-    .btn-4 {
-      background-color: #ffa253; /* arancione */
-    }
-
-    /* Sottotitolo sotto il testo principale */
-    .subtitle {
-      display: block;
-      font-weight: 400;
-      font-size: 0.9rem;
-      margin-top: 6px;
-      color: #eee;
-    }
-  </style>
+        /* Responsive per mobile */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+            }
+            .sidebar img {
+                max-height: 60px;
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+            .main {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="sidebar">
-    <img src="logo.png" alt="Logo" style="width:120px; margin-bottom:20px;">
-    <!-- pulsanti o link -->
-</div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo Brookies">
+    </div>
 
-
-  <div class="main-content">
-    <h1 style="text-align: center; color: #0f3a49;">
-Dona a <span style="color: #03c5ab;">Brookies</span>
-</h1>
-
-
-
-    <table>
-      <tr class="header-row">
-        <td>Scegli l'importo</td>
-      </tr>
-      <tr class="button-row">
-        <td>
-          <a href="https://www.paypal.com/paypalme/Brookies1/1EUR" class="donation-button btn-1">
-            1 euro
-            <span class="subtitle">Caffè</span>
-          </a>
-          <a href="https://www.paypal.com/paypalme/Brookies1/2EUR" class="donation-button btn-2">
-            2 euro
-            <span class="subtitle">Birra</span>
-          </a>
-          <a href="https://www.paypal.com/paypalme/Brookies1/4EUR" class="donation-button btn-3">
-            4 euro
-            <span class="subtitle">Panino</span>
-          </a>
-          <a href="https://www.paypal.com/paypalme/Brookies1/10EUR" class="donation-button btn-4">
-            10 euro
-            <span class="subtitle">Importo massimo</span>
-          </a>
-        </td>
-      </tr>
-    </table>
-  </div>
+    <!-- Contenuto principale -->
+    <div class="main">
+        <h1>Dona ai Brookies</h1>
+        <table class="donation-table">
+            <tr>
+                <th>Scegli l'importo</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="LINK_PAYPAL_1EURO" class="donation-button">1 € <br><small>Caffè</small></a>
+                    <a href="LINK_PAYPAL_2EURO" class="donation-button" style="background-color: #2E86C1;">2 € <br><small>Birra</small></a>
+                    <a href="LINK_PAYPAL_4EURO" class="donation-button" style="background-color: #28B463;">4 € <br><small>Panino</small></a>
+                    <a href="LINK_PAYPAL_10EURO" class="donation-button" style="background-color: #8E44AD;">10 € <br><small>Importo massimo</small></a>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 </html>
